@@ -1,0 +1,16 @@
+<p class="">
+<h1><%= @stock.symbol%></h1>
+<h3><small><%= @stock.name %></small></h3>
+<p>
+  <strong>Shares:</strong>
+  <%= @stock.shares %>
+</p>
+
+<p>
+  <strong>Price paid:</strong>
+  <%= @stock.price_paid %>
+</p>
+
+<button type="button" class="btn btn-primary"><%= link_to 'Edit', edit_stock_path(@stock) %></button> |
+<button type="button" class="btn btn-primary"><%= link_to 'Back', stocks_path %></button>
+
