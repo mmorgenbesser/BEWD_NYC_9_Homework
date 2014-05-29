@@ -14,6 +14,25 @@
  *= require_tree .
  */
 /* User sign in and sign forms. */
+
+@import 'bootstrap';
+
+body {
+  padding-top: 60px;
+}
+table{
+  margin-left: 200px;
+  min-width: 1000px;
+}
+h3{
+  margin-left: 200px;
+}
+h5{
+  margin-left: 200px;
+}
+span{
+  margin-left: 10px;
+}
 .border-form-div {
   max-width: 300px;
   padding: 19px 29px 29px;

@@ -1,16 +1,37 @@
-<p class="">
-<h1><%= @stock.symbol%></h1>
-<h3><small><%= @stock.name %></small></h3>
-<p>
-  <strong>Shares:</strong>
-  <%= @stock.shares %>
-</p>
+<div class = "container">
+  <h1><%= @stock.symbol%></h1>
+  <h4><small><%= @stock.name %></small></h4>
+  <p>
+    <strong>Shares:</strong>
+    <%= @stock.shares %>
+  </p>
 
-<p>
-  <strong>Price paid:</strong>
-  <%= @stock.price_paid %>
-</p>
+  <p>
+    <strong>Price paid:</strong>
+    <%= @stock.price_paid %>
+  </p>
+  <p>
+    <strong>Current Price:</strong>
+  <%= current = StockQuote::Stock.quote("#{@stock.symbol}").ask%>
+  </p>
+  <p>
+    <strong>Investment:</strong>
+  <%= investment = @stock.price_paid * @stock.shares %>
+  </p>
+  <p>
+    <strong>Profit:</strong>
+  <% profit = (current * @stock.shares) - investment%>
+      <% if current.nil? %>
+      <%= current = "Cannot find current price" %>
+      <% elsif profit < 1 %>
+        <%= profit = (current * @stock.shares) - investment%><span class="label label-warning">  Loss</span>
+      <% else %>
+      <%= profit = (current * @stock.shares) - investment%><span class="label label-success"> Gain</span>
+      <%end%>
 
-<button type="button" class="btn btn-primary"><%= link_to 'Edit', edit_stock_path(@stock) %></button> |
-<button type="button" class="btn btn-primary"><%= link_to 'Back', stocks_path %></button>
+  </p>
+  <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_stock_path(@stock) %></button>
+  <button type="button" class="btn btn-default"><%= link_to 'Back', stocks_path %></button>
+  <button type="button" class="btn btn-danger"><%= link_to 'Destroy', @stock, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+</div>
 

@@ -25,6 +25,7 @@ class StocksController < ApplicationController
   # POST /stocks.json
   def create
     @stock = Stock.new(stock_params)
+    @stock.user_id = current_user.id
 
     respond_to do |format|
       if @stock.save
@@ -69,6 +70,6 @@ class StocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stock_params
-      params.require(:stock).permit(:name, :symbol, :shares, :price_paid)
+      params.require(:stock).permit(:name, :symbol, :shares, :price_paid, :user_id)
     end
 end

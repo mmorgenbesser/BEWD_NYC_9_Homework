@@ -5,6 +5,7 @@ class CreateStocks < ActiveRecord::Migration
       t.string :symbol
       t.integer :shares
       t.float :price_paid
+      t.integer :user_id
 
       t.timestamps
     end
